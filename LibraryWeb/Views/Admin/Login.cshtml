@@ -1,0 +1,26 @@
+﻿@model LibraryWeb.Models.LoginViewModel
+@{
+    ViewBag.ReturnUrl = Request["ReturnUrl"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <h2 class="h2padding">Login</h2>
+        @using (Html.BeginForm(null, null, new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)<br />
+            @Html.TextBoxFor(m => m.UserName, new { placeholder = Html.DisplayNameFor(m => m.UserName) })<br />
+            @Html.PasswordFor(m => m.Password, new { placeholder = Html.DisplayNameFor(m => m.Password) })<br />
+            <button type="submit">Login</button>
+        }
+    </div>
+</body>
+</html> 
